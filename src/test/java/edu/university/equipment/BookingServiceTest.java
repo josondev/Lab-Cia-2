@@ -10,7 +10,7 @@ class BookingServiceTest {
  
  @Test void zeroQuantityRejected(){assertThrows(IllegalArgumentException.class,()->service.create("STU1001","LAPTOP01",0));assertEquals(10,service.getEquipment("LAPTOP01").getAvailableQuantity());}
  
- @Test void blankBorrowerRejected(){assertThrows(IllegalArgumentException.class,()->service.create(" ","LAPTOP01",1));}
+ @Test void blankBorrowerRejected(){assertThrows(IllegalArgumentException.class,()->service.create(" ","LAPTOP01",1));assertEquals(10,service.getEquipment("LAPTOP01").getAvailableQuantity());}
  
  @Test void unknownEquipmentRejected(){assertThrows(NoSuchElementException.class,()->service.create("STU1001","UNKNOWN",1));}
  
@@ -22,5 +22,7 @@ class BookingServiceTest {
 
  @Test void exactPlusOneOverbookingRejected(){assertThrows(IllegalStateException.class,()->service.create("STU1001","LAPTOP01",11));assertEquals(10,service.getEquipment("LAPTOP01").getAvailableQuantity());}
 
- @Test void emptyBorrowerRejected(){assertThrows(IllegalArgumentException.class,()->service.create("","LAPTOP01",1));}
+ @Test void emptyBorrowerRejected(){assertThrows(IllegalArgumentException.class,()->service.create("","LAPTOP01",1));assertEquals(10,service.getEquipment("LAPTOP01").getAvailableQuantity());}
+
+ @Test void nullBorrowerRejected(){assertThrows(IllegalArgumentException.class,()->service.create(null,"LAPTOP01",1));assertEquals(10,service.getEquipment("LAPTOP01").getAvailableQuantity());}
 }
