@@ -5,8 +5,8 @@ Java 17 / Spring Boot REST API for a CI/CD lab assessment.
 Run the Maven package build and the unit tests with:
 
 ```powershell
+mvn clean test
 mvn clean package
-mvn test
 ```
 
 To run the application directly, use `mvn spring-boot:run`; it listens on port 8080.
